@@ -1,0 +1,11 @@
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\configuration\ApplicationConfig.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\configuration\ServiceConfig.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\controller\CinemaController.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\service\interfaces\CrudService.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\dao\interfaces\CrudDao.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\configuration\DatabaseConfig.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\service\impl\CrudServiceImpl.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\dao\impl\CrudDaoImpl.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\model\ModelInterface.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\util\ConverterRegister.java
+E:\Projects\ELTE\eltecinema\src\main\java\hu\elte\cinema\dto\DtoInterface.java
