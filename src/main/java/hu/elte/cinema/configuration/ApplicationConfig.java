@@ -1,5 +1,6 @@
 package hu.elte.cinema.configuration;
 
+import hu.elte.cinema.factory.CrudFactory;
 import hu.elte.cinema.util.ConverterRegister;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +20,6 @@ public class ApplicationConfig {
     ConverterRegister converterRegister() {
         return new ConverterRegister();
     }
+    @Bean
+    CrudFactory crudFactory() {return new CrudFactory(); }
 }
