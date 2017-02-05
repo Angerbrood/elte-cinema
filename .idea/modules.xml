@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/eltecinema.iml" filepath="$PROJECT_DIR$/eltecinema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elte-cinema.iml" filepath="$PROJECT_DIR$/elte-cinema.iml" />
     </modules>
   </component>
 </project>

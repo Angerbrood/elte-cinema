@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="elte-cinema">
-    <output-path>$PROJECT_DIR$/out/artifacts/elte_cinema</output-path>
-    <root id="archive" name="elte-cinema.war" />
-  </artifact>
-</component>
