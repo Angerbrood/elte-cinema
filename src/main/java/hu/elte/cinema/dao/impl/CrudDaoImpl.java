@@ -19,8 +19,9 @@ public class CrudDaoImpl<EntityType extends ModelInterface<IdType>, IdType exten
 
 
     @Override
-    public void createEntity(EntityType entity) {
+    public IdType createEntity(EntityType entity) {
         repository.save(entity);
+        return entity.getId();
     }
 
     @Override

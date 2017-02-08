@@ -4,7 +4,7 @@ package hu.elte.cinema.dao.interfaces;
 import java.util.List;
 
 public interface CrudDao<EntityType, IdType> {
-    void createEntity(EntityType entity);
+    IdType createEntity(EntityType entity);
     void updateEntity(EntityType entity);
     void deleteEntity(EntityType entity);
     void deleteAllEntity();

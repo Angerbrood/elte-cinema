@@ -6,25 +6,26 @@ import hu.elte.cinema.dao.interfaces.CrudDao;
 import hu.elte.cinema.dto.DtoInterface;
 import hu.elte.cinema.model.ModelInterface;
 import hu.elte.cinema.service.interfaces.CrudService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CrudServiceImpl<EntityType extends ModelInterface<IdType>, DtoType extends DtoInterface<IdType>, IdType extends Serializable>
+public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<IdType>, DtoType extends DtoInterface<IdType>, IdType extends Serializable>
         implements CrudService<EntityType, DtoType, IdType>{
 
+    @Autowired
+    private ConversionService conversionService;
+
     private final CrudDao<EntityType, IdType> dao;
-    private final ConversionService conversionService;
     private final Class<EntityType> entityTypeClass;
     private final Class<DtoType> dtoTypeClass;
 
-    public CrudServiceImpl(MongoRepository<EntityType, IdType> repository, ConversionService conversionService, Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass) {
+    public AbstractCrudServiceImpl(MongoRepository<EntityType, IdType> repository, Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass) {
         this.dao = new CrudDaoImpl<>(repository);
-        this.conversionService = conversionService;
         this.entityTypeClass = entityTypeClass;
         this.dtoTypeClass = dtoTypeClass;
     }
