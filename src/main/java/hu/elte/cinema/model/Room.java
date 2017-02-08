@@ -12,7 +12,8 @@ public class Room implements ModelInterface<String>{
     private Integer maxColumnNumber;
     private Boolean[][] seatsArray;
 
-    public Room() {}
+    public Room() {
+    }
 
     @Override
     public String getId() {

@@ -10,7 +10,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
 
 @Configuration
-@ComponentScan(basePackages = {"hu.elte.cinema.converter"})
+@ComponentScan(basePackages = {"hu.elte.cinema.converter.dto", "hu.elte.cinema.converter.model"})
 @Import(ServiceConfig.class)
 public class ApplicationConfig {
 
