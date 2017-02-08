@@ -1,8 +1,0 @@
-hu\elte\cinema\dao\interfaces\CrudDao.class
-hu\elte\cinema\configuration\DatabaseConfig.class
-hu\elte\cinema\model\ModelInterface.class
-hu\elte\cinema\service\impl\CrudServiceImpl.class
-hu\elte\cinema\util\ConverterRegister.class
-hu\elte\cinema\controller\CinemaController.class
-hu\elte\cinema\service\interfaces\CrudService.class
-hu\elte\cinema\dto\DtoInterface.class
