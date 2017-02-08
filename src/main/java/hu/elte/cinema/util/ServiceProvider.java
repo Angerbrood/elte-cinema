@@ -17,7 +17,7 @@ public class ServiceProvider {
     }
 
     public <T> void registerService(Class<T> entityClass, CrudService crudService) {
-        services.put(entityClass, new AdminService(crudService));
+        services.put(entityClass, new AdminService(crudService, customResponseFactory));
     }
     public AdminService getService(Class<?> entityClass) {
         return services.get(entityClass);
