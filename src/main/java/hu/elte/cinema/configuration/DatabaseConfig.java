@@ -1,33 +1,72 @@
 package hu.elte.cinema.configuration;
 
 
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
-import com.mongodb.ServerAddress;
+
+import hu.elte.cinema.configuration.properties.DatabasePropertiesCreateConfig;
+import hu.elte.cinema.configuration.properties.DatabasePropertiesNormalConfig;
+import hu.elte.cinema.model.Movie;
+import hu.elte.cinema.model.Person;
+import hu.elte.cinema.model.Room;
+import hu.elte.cinema.model.Screening;
+import hu.elte.cinema.model.Ticket;
+import hu.elte.cinema.util.DatabaseProperties;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-@PropertySource({ "classpath:mongodb-data-source.properties" })
-public class DatabaseConfig extends AbstractMongoConfiguration {
+import javax.sql.DataSource;
+import java.util.Properties;
+
+@Configuration
+@Import({ DatabasePropertiesNormalConfig.class, DatabasePropertiesCreateConfig.class })
+public class DatabaseConfig  {
+
+    private static Logger logger = LoggerFactory.getLogger(DatabaseConfig.class);
 
     @Autowired
-    private Environment environment;
+    private DatabaseProperties databaseProperties;
 
-    @Override
-    protected String getDatabaseName() {
-        return environment.getRequiredProperty("mongo.name");
+    @Bean
+    DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(databaseProperties.getDriverClassName());
+        dataSource.setUrl(databaseProperties.getUrl());
+        dataSource.setUsername(databaseProperties.getUsername());
+        dataSource.setPassword(databaseProperties.getPassword());
+        return dataSource;
     }
 
-    @Override
     @Bean
-    public Mongo mongo() throws Exception {
-        ServerAddress serverAddress = new ServerAddress(environment.getRequiredProperty("mongo.host"));
-        MongoClientOptions options = new MongoClientOptions.Builder()
-                .build();
-        return new MongoClient(serverAddress, options);
+    LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setAnnotatedClasses(Movie.class, Person.class, Room.class, Screening.class, Ticket.class);
+        Properties hibernateProperties = hibernateProperties();
+        factoryBean.setHibernateProperties(hibernateProperties);
+        return factoryBean;
+    }
+
+    @Autowired
+    @Bean
+    HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+        return transactionManager;
+    }
+
+
+    private Properties hibernateProperties() {
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        hibernateProperties.setProperty("hibernate.format_sql", databaseProperties.getShowSql());
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", databaseProperties.getHbm2ddlAuto());
+        logger.info("Database properties: {}", hibernateProperties);
+        return hibernateProperties;
     }
 }

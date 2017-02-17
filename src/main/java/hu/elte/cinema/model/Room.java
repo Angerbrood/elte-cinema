@@ -1,27 +1,38 @@
 package hu.elte.cinema.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document(collection = "Room")
-public class Room implements ModelInterface<String>{
+@Entity
+@Table(name = "Room")
+public class Room implements ModelInterface<Integer>{
     @Id
-    private String id;
+    @Column(name = "ROOM_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "ROOM_NAME", nullable = false)
     private String roomName;
+    @Column(name = "MAX_ROW", nullable = false)
     private Integer maxRowNumber;
+    @Column(name = "MAX_COL", nullable = false)
     private Integer maxColumnNumber;
+    @Column(name = "SEATS", nullable = false)
     private Boolean[][] seatsArray;
 
     public Room() {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

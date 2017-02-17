@@ -7,8 +7,6 @@ public interface CrudService<EntityType, DtoType, IdType> {
     void create(DtoType dto);
     void delete(DtoType dto);
     void update(DtoType dto);
-    void dropAll();
-
     DtoType findById(IdType id);
 
     boolean exists(IdType id);

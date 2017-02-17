@@ -1,8 +1,8 @@
 package hu.elte.cinema.dto;
 
 
-public class RoomDto implements DtoInterface<String> {
-    private String id;
+public class RoomDto implements DtoInterface<Integer> {
+    private Integer id;
     private String roomName;
     private Integer maxRowNumber;
     private Integer maxColumnNumber;
@@ -11,12 +11,12 @@ public class RoomDto implements DtoInterface<String> {
     public RoomDto() {}
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

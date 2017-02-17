@@ -2,31 +2,49 @@ package hu.elte.cinema.model;
 
 
 import hu.elte.cinema.enums.AgeLimit;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import hu.elte.cinema.enums.ColumnSize;
 
-@Document(collection = "Movie")
-public class Movie implements ModelInterface<String>{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Movie")
+public class Movie implements ModelInterface<Integer>{
 
     @Id
-    private String id;
+    @Column(name = "MOVIE_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "TITLE", nullable = false)
     private String title;
+    @Column(name = "DUBBED", nullable = false)
     private Boolean dubbed;
+    @Column(name = "DIRECTOR", nullable = false)
     private String director;
+    @Column(name = "STORY", nullable = false, length = ColumnSize.HUGE)
     private String story;
+    @Column(name = "LENGTH", nullable = false)
     private Integer length;
+    @Column(name = "AGE_LIMIT", nullable = false)
     private AgeLimit ageLimit;
+    @Column(name = "TICKET_SOLD")
     private Integer ticketSold;
+    @Column(name = "MAX_SCREEN_NUMBER")
+    private Integer maxScreenNumber;
 
     public Movie() {}
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -84,5 +102,13 @@ public class Movie implements ModelInterface<String>{
 
     public void setTicketSold(Integer ticketSold) {
         this.ticketSold = ticketSold;
+    }
+
+    public Integer getMaxScreenNumber() {
+        return maxScreenNumber;
+    }
+
+    public void setMaxScreenNumber(Integer maxScreenNumber) {
+        this.maxScreenNumber = maxScreenNumber;
     }
 }

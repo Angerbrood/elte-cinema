@@ -1,16 +1,19 @@
 package hu.elte.cinema.service.impl;
 
 
+import hu.elte.cinema.dao.interfaces.TicketDao;
 import hu.elte.cinema.dto.TicketDto;
 import hu.elte.cinema.model.Ticket;
 import hu.elte.cinema.service.interfaces.TicketService;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class TicketServiceImpl extends AbstractCrudServiceImpl<Ticket, TicketDto, String>
+@Service
+public class TicketServiceImpl extends AbstractCrudServiceImpl<Ticket, TicketDto, Integer>
     implements TicketService{
 
-
-    public TicketServiceImpl(MongoRepository<Ticket, String> repository) {
-        super(repository, Ticket.class, TicketDto.class);
+    @Autowired
+    public TicketServiceImpl(TicketDao dao) {
+        super(Ticket.class, TicketDto.class, dao);
     }
 }

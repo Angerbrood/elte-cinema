@@ -1,14 +1,12 @@
 package hu.elte.cinema.service.impl;
 
 
-import hu.elte.cinema.dao.impl.CrudDaoImpl;
 import hu.elte.cinema.dao.interfaces.CrudDao;
 import hu.elte.cinema.dto.DtoInterface;
 import hu.elte.cinema.model.ModelInterface;
 import hu.elte.cinema.service.interfaces.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,8 +22,8 @@ public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<
     private final Class<EntityType> entityTypeClass;
     private final Class<DtoType> dtoTypeClass;
 
-    public AbstractCrudServiceImpl(MongoRepository<EntityType, IdType> repository, Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass) {
-        this.dao = new CrudDaoImpl<>(repository);
+    public AbstractCrudServiceImpl(Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass, CrudDao<EntityType, IdType> dao) {
+        this.dao = dao;
         this.entityTypeClass = entityTypeClass;
         this.dtoTypeClass = dtoTypeClass;
     }
@@ -48,10 +46,6 @@ public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<
         dao.updateEntity(entity);
     }
 
-    @Override
-    public void dropAll() {
-        dao.deleteAllEntity();
-    }
 
     @Override
     public DtoType findById(IdType id) {

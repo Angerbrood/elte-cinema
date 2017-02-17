@@ -3,9 +3,9 @@ package hu.elte.cinema.dto;
 
 import hu.elte.cinema.enums.AgeLimit;
 
-public class MovieDto implements DtoInterface<String>{
+public class MovieDto implements DtoInterface<Integer>{
 
-    private String id;
+    private Integer id;
     private String title;
     private Boolean dubbed;
     private String director;
@@ -13,16 +13,17 @@ public class MovieDto implements DtoInterface<String>{
     private Integer length;
     private AgeLimit ageLimit;
     private Integer ticketSold;
+    private Integer maxScreenNumber;
 
     public MovieDto() {}
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -80,5 +81,13 @@ public class MovieDto implements DtoInterface<String>{
 
     public void setTicketSold(Integer ticketSold) {
         this.ticketSold = ticketSold;
+    }
+
+    public Integer getMaxScreenNumber() {
+        return maxScreenNumber;
+    }
+
+    public void setMaxScreenNumber(Integer maxScreenNumber) {
+        this.maxScreenNumber = maxScreenNumber;
     }
 }

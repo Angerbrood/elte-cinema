@@ -59,16 +59,6 @@ public class AdminService {
         }
         return response;
     }
-    public CustomResponse deleteAll() {
-        CustomResponse response;
-        try {
-            crudService.dropAll();
-            response = customResponseFactory.successfullResponse();
-        } catch (Exception ex) {
-            response = customResponseFactory.errorResponse(ex);
-        }
-        return response;
-    }
     public CustomResponse findById(Wrapper<String> customRequest) {
         CustomResponse response;
         try {

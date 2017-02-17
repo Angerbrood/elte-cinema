@@ -1,17 +1,19 @@
 package hu.elte.cinema.service.impl;
 
-
+import hu.elte.cinema.dao.interfaces.MovieDao;
 import hu.elte.cinema.dto.MovieDto;
 import hu.elte.cinema.model.Movie;
-import hu.elte.cinema.service.interfaces.MovieService;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
-public class MovieServiceImpl extends AbstractCrudServiceImpl<Movie, MovieDto, String>
+import hu.elte.cinema.service.interfaces.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MovieServiceImpl extends AbstractCrudServiceImpl<Movie, MovieDto, Integer>
     implements MovieService{
 
-    public MovieServiceImpl(MongoRepository<Movie, String> repository) {
-        super(repository, Movie.class, MovieDto.class);
+    @Autowired
+    public MovieServiceImpl(MovieDao dao) {
+        super(Movie.class, MovieDto.class, dao);
     }
-
-
 }

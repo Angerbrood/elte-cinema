@@ -1,30 +1,44 @@
 package hu.elte.cinema.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import java.util.Date;
 
-@Document(collection = "Ticket")
-public class Ticket implements ModelInterface<String>{
+@Entity
+@Table(name = "Ticket")
+public class Ticket implements ModelInterface<Integer>{
 
     @Id
-    private String id;
+    @Column(name = "TICKE_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "START_DATE", nullable = false)
     private Date startDate;
-    private String personId;
-    private String movieId;
-    private String seatX;
-    private String seatY;
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    private Person person;
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    private Movie movie;
+    @Column(name = "SEAT_ROW_NUMBER", nullable = false)
+    private Integer seatX;
+    @Column(name = "SEAT_COLUMN_NUMBER", nullable = false)
+    private Integer seatY;
 
     public Ticket() {}
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -36,35 +50,35 @@ public class Ticket implements ModelInterface<String>{
         this.startDate = startDate;
     }
 
-    public String getPersonId() {
-        return personId;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public String getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
-    public String getSeatX() {
+    public Integer getSeatX() {
         return seatX;
     }
 
-    public void setSeatX(String seatX) {
+    public void setSeatX(Integer seatX) {
         this.seatX = seatX;
     }
 
-    public String getSeatY() {
+    public Integer getSeatY() {
         return seatY;
     }
 
-    public void setSeatY(String seatY) {
+    public void setSeatY(Integer seatY) {
         this.seatY = seatY;
     }
 }

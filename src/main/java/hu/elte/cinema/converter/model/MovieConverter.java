@@ -19,6 +19,7 @@ public class MovieConverter implements Converter<MovieDto, Movie> {
         movie.setLength(movieDto.getLength());
         movie.setStory(movieDto.getStory());
         movie.setTicketSold(movieDto.getTicketSold());
+        movieDto.setMaxScreenNumber(movieDto.getMaxScreenNumber());
         return movie;
     }
 }

@@ -3,24 +3,24 @@ package hu.elte.cinema.dto;
 
 import java.util.Date;
 
-public class TicketDto implements DtoInterface<String>{
+public class TicketDto implements DtoInterface<Integer>{
 
-    private String id;
+    private Integer id;
     private Date startDate;
-    private String personId;
-    private String movieId;
-    private String seatX;
-    private String seatY;
+    private PersonDto person;
+    private MovieDto movie;
+    private Integer seatX;
+    private Integer seatY;
 
     public TicketDto() {}
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,35 +32,35 @@ public class TicketDto implements DtoInterface<String>{
         this.startDate = startDate;
     }
 
-    public String getPersonId() {
-        return personId;
+    public PersonDto getPerson() {
+        return person;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setPerson(PersonDto person) {
+        this.person = person;
     }
 
-    public String getMovieId() {
-        return movieId;
+    public MovieDto getMovie() {
+        return movie;
     }
 
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
+    public void setMovie(MovieDto movie) {
+        this.movie = movie;
     }
 
-    public String getSeatX() {
+    public Integer getSeatX() {
         return seatX;
     }
 
-    public void setSeatX(String seatX) {
+    public void setSeatX(Integer seatX) {
         this.seatX = seatX;
     }
 
-    public String getSeatY() {
+    public Integer getSeatY() {
         return seatY;
     }
 
-    public void setSeatY(String seatY) {
+    public void setSeatY(Integer seatY) {
         this.seatY = seatY;
     }
 }

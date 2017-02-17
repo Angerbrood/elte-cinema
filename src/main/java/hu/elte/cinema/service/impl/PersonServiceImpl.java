@@ -1,16 +1,19 @@
 package hu.elte.cinema.service.impl;
 
 
+
+import hu.elte.cinema.dao.interfaces.PersonDao;
 import hu.elte.cinema.dto.PersonDto;
 import hu.elte.cinema.model.Person;
 import hu.elte.cinema.service.interfaces.PersonService;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Service;
 
-public class PersonServiceImpl extends AbstractCrudServiceImpl<Person, PersonDto, String>
+@Service
+public class PersonServiceImpl extends AbstractCrudServiceImpl<Person, PersonDto, Integer>
     implements PersonService{
 
 
-    public PersonServiceImpl(MongoRepository<Person, String> repository) {
-        super(repository, Person.class, PersonDto.class);
+    public PersonServiceImpl(PersonDao dao) {
+        super(Person.class, PersonDto.class, dao);
     }
 }

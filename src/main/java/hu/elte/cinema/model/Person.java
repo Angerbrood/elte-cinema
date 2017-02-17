@@ -1,27 +1,41 @@
 package hu.elte.cinema.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Person")
-public class Person implements ModelInterface<String> {
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Person")
+public class Person implements ModelInterface<Integer> {
 
     @Id
-    private String id;
+    @Column(name = "PERSON_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "NAME", nullable = false)
     private String name;
+    @Column(name = "AGE", nullable = false)
     private Integer age;
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Ticket ticket;
 
     public Person() {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

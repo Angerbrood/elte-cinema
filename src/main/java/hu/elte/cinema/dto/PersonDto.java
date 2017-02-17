@@ -1,9 +1,9 @@
 package hu.elte.cinema.dto;
 
 
-public class PersonDto implements DtoInterface<String>{
+public class PersonDto implements DtoInterface<Integer>{
 
-    private String id;
+    private Integer id;
     private String name;
     private Integer age;
     private TicketDto ticketDto;
@@ -12,12 +12,12 @@ public class PersonDto implements DtoInterface<String>{
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
