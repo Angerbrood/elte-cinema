@@ -1,7 +1,6 @@
 package hu.elte.cinema.configuration;
 
 
-import hu.elte.cinema.util.ConverterRegister;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +10,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 
 @Configuration
 @ComponentScan(basePackages = {"hu.elte.cinema.converter.dto", "hu.elte.cinema.converter.model"})
-@Import(ServiceConfig.class)
+@Import({ServiceConfig.class, ThymeleafConfig.class})
 public class ApplicationConfig {
 
     @Bean
@@ -22,4 +21,6 @@ public class ApplicationConfig {
     ConverterRegister converterRegister() {
         return new ConverterRegister();
     }
+
+
 }

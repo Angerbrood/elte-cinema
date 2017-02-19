@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ELTE-cinema</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/movie.js"></script>
+    <script type="text/javascript" src="/js/reservation.js"></script>
+    <script type="text/javascript" src="/js/screening.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ELTE-Cinema</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="home_li"><a href="/">Home</a></li>
+                <li id="newmovie_li"><a href="newmovie.html" onclick="showNewMovieForm()">Add new movie</a></li>
+                <li id="newscreening_li"><a href="newscreening.html" onclick="showNewScreeningForm()">Add new screening</a></li>
+                <li id="newreseration_li"><a href="newreservation.html" onclick="showNewReservationForm()">Add new reservation</a></li>
+                <li id="modifymovie_li"><a href="modifymovie.html" onclick="showModifyMovieForm()">Modify movie</a></li>
+                <li id="modifyscreening_li"><a href="modifyscreening.html" onclick="showModifyScreeningForm()">Modify screening</a></li>
+                <li id="modifyreservation_li"><a href="modifyreservation.html" onclick="showModifyReservationForm()">Modify reservation</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="main_container">
+
+</div>
+</body>
+</html>
