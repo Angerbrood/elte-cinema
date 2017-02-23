@@ -10,7 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-public class DispatcherConfig implements WebApplicationInitializer {
+public class WebConfig implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) throws ServletException {
@@ -25,7 +25,7 @@ public class DispatcherConfig implements WebApplicationInitializer {
         // Create the dispatcher servlet's Spring application context
         AnnotationConfigWebApplicationContext dispatcherContext =
                 new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(DispatcherConfig.class);
+        dispatcherContext.register(WebConfig.class);
 
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher =
